@@ -1,0 +1,45 @@
+---
+const { isBlue } = Astro.props;
+const color = "green";
+
+// Se importaría de manera global
+import "../styles/first.css";
+---
+
+<h1>Scoped Styles</h1>
+
+<!-- If `isRed` is truthy, class will be "box red". -->
+<!-- If `isRed` is falsy, class will be "box". -->
+<div class:list={["box", { blue: isBlue }]}><slot /></div>
+
+<p style={{ color: "brown", textDecoration: "underline" }}>My text</p>
+<p style="color: brown; text-decoration: underline;">My text</p>
+
+<div class="pruebita">
+  <p>Esto es una</p>
+  <h4>PRUEBA</h4>
+</div>
+
+<div class="linkeadito">linkeadito OwO</div>
+
+<style define:vars={{ color }}>
+  h1 {
+    color: var(--color);
+  }
+
+  :global(.container) {
+    background: antiquewhite;
+  }
+</style>
+
+<style is:global>
+  span {
+    color: blue;
+  }
+  .box {
+    border: 1px solid blue;
+  }
+  .blue {
+    border-color: red;
+  }
+</style>
